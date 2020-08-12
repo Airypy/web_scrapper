@@ -31,17 +31,8 @@ def qna(my_url):
         answers=content.find('div',class_="answer").text
         csv_writer.writerow([questions,answers])
 
-    try:
-        next=soup.find('li',class_="pager-next").a['href']
-        if(next!=None):
-            qna("https://www.artofliving.org"+next)
-
-    except Exception as e:
-        print("Finished")
-
-
-
 
 url=input("Enter the url you want to scrap")
-qna(url)
+for i in range(0,794):
+    qna(url+"?page={}".format(i))
 csv_file.close()
